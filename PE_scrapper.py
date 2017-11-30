@@ -14,7 +14,7 @@ DOWNLOAD_PATH = '/home/PE/'
 # http://www.moneycontrol.com/india/stockpricequote/ - this part of the link is common to all stocks in moneycontrol.com
 # so if you are adding your stocks, add their NSE symbol as key and later part of the link of that stock from moneycontrol 
 
-md = {'CROMPTON':'electricals/cromptongreavesconsumerelectrical/CGC01',
+stock_list = {'CROMPTON':'electricals/cromptongreavesconsumerelectrical/CGC01',
       'GLENMARK':'pharmaceuticals/glenmarkpharma/GP08',
       'WOCKPHARMA':'pharmaceuticals/wockhardt/W05',
       'RELIANCE':'refineries/relianceindustries/RI',
@@ -55,9 +55,9 @@ md = {'CROMPTON':'electricals/cromptongreavesconsumerelectrical/CGC01',
       'LICHSGFIN': 'financehousing/lichousingfinance/LIC', 
       'ALLCARGO': 'transportlogistics/allcargologistics/AGL02' }
       
-for k in md.items:
-    if not os.path.isfile(DOWNLOAD_PATH+k+'P/E_history.csv'):
-        file = open(DOWNLOAD_PATH+k+'P/E_history.csv','w')
+for k in stock_list.items:
+    if not os.path.isfile(DOWNLOAD_PATH+k+'_P/E_history.csv'):
+        file = open(DOWNLOAD_PATH+k+'_P/E_history.csv','w')
         file.write('DATE, STANDALONE_P/E,	INDUSTRY_P/E,	CONSOLIDATED_P/E\n')
         file.close()
 
@@ -68,8 +68,8 @@ def work(k, v, count):
         a.close()
         
         b = open('/tmp/'+k+vdat+'.txt','r')
-        c = open(DOWNLOAD_PATH+k+'_PEhist.csv','a')
-        prev , cou, data = '', 0, []
+        c = open(DOWNLOAD_PATH+k+'_P/E_history.csv','a')
+        prev, cou, data = '', 0, []
         data.append(vdat)
         
         for line in b:
@@ -93,6 +93,6 @@ def work(k, v, count):
         
 if __name__ == '__main__' :
     pool = Pool(processes = 14)
-    for k, v in md.items():
+    for k, v in stock_list.items():
         count+ = 1
         pool.apply_async(func = work, args = (k, v, count))
