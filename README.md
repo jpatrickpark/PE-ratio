@@ -13,4 +13,4 @@ for eg: CROMPTON's link in money control is
 http://www.moneycontrol.com/india/stockpricequote/electricals/cromptongreavesconsumerelectrical/CGC01
 
 http://www.moneycontrol.com/india/stockpricequote/ - this part of the link is common to all stocks in moneycontrol.com
-so if you are adding your stocks, add their NSE symbol as key and later part of the link of that stock from moneycontrol as value.
+so if you are adding your stocks, add their NSE symbol as key and later(remaining) part of the link of that stock from moneycontrol as value.
